@@ -49,8 +49,8 @@ public class MultiHttpSecurityConfig {
   public static class AdminSecurityConfig extends WebSecurityConfigurerAdapter{
     @Autowired
     AdminServiceImpl adminService;
-//    @Autowired
- //   VerificationCodeFilter verificationCodeFilter;
+    @Autowired
+    VerificationCodeFilter verificationCodeFilter;
     @Autowired
     SimpMessagingTemplate simpMessagingTemplate;
     @Autowired
@@ -61,7 +61,7 @@ public class MultiHttpSecurityConfig {
     //用户名和密码验证服务
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-      //auth.userDetailsService(adminService);
+      auth.userDetailsService(adminService);
     }
 
     //忽略"/login","/verifyCode"请求，该请求不需要进入Security的拦截器
@@ -73,13 +73,13 @@ public class MultiHttpSecurityConfig {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
       //将验证码过滤器添加在用户名密码过滤器的前面
- //     http.addFilterBefore(verificationCodeFilter, UsernamePasswordAuthenticationFilter.class);
+      http.addFilterBefore(verificationCodeFilter, UsernamePasswordAuthenticationFilter.class);
       http.antMatcher("/admin/**").authorizeRequests()
               .anyRequest().authenticated()
               .and()
               .formLogin()
               .usernameParameter("username")
-//              .passwordParameter("password")
+              .passwordParameter("password")
               .loginPage("/admin/login")
               .loginProcessingUrl("/admin/doLogin")
               //成功处理
@@ -122,8 +122,8 @@ public class MultiHttpSecurityConfig {
   public static class UserSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     UserServiceImpl userService;
-//    @Autowired
- //   VerificationCodeFilter verificationCodeFilter;
+    @Autowired
+    VerificationCodeFilter verificationCodeFilter;
     @Autowired
     SimpMessagingTemplate simpMessagingTemplate;
     @Autowired
@@ -132,7 +132,7 @@ public class MultiHttpSecurityConfig {
     //验证服务
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-     // auth.userDetailsService(userService);
+      auth.userDetailsService(userService);
     }
 
 //    //密码加密
@@ -151,13 +151,13 @@ public class MultiHttpSecurityConfig {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
       //将验证码过滤器添加在用户名密码过滤器的前面
-  //    http.addFilterBefore(verificationCodeFilter, UsernamePasswordAuthenticationFilter.class);
+      http.addFilterBefore(verificationCodeFilter, UsernamePasswordAuthenticationFilter.class);
       http.authorizeRequests()
               .anyRequest().authenticated()
               .and()
               .formLogin()
               .usernameParameter("username")
-//              .passwordParameter("password")
+              .passwordParameter("password")
               .loginPage("/login")
               .loginProcessingUrl("/doLogin")
               //成功处理
@@ -167,7 +167,6 @@ public class MultiHttpSecurityConfig {
                   resp.setContentType("application/json;charset=utf-8");
                   PrintWriter out=resp.getWriter();
                   User user=(User) authentication.getPrincipal();
-                  user.setNickname(user.getUsername());
                   user.setPassword(null);
                   //更新用户状态为在线
                   userService.setUserStateToOn(user.getId());
