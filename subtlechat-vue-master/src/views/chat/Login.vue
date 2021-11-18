@@ -1,24 +1,21 @@
 <template>
   <el-container>
-    <el-header >
-      <el-button @click="gotoAdminLogin" icon="el-icon-d-arrow-right" style="float: right;border: none" >管理端登录</el-button>
-    </el-header>
     <el-main>
       <div class="loginContainer">
         <el-form ref="loginForm" :rules="rules" :model="loginForm" label-width="80px">
-          <h3 class="loginTitle">微言SubtleChat~</h3>
-          <el-form-item label="用户名:" prop="username">
-            <el-input type="text" v-model="loginForm.username" auto-complete="off" placeholder="请输入用户名"></el-input>
+          <h3 class="loginTitle">席位名称设置~</h3>
+          <el-form-item label="席位名:" prop="username">
+            <el-input type="text" v-model="loginForm.username" auto-complete="off" placeholder="请输入席位名"></el-input>
           </el-form-item>
-          <el-form-item label="密码:" prop="password">
-            <el-input type="password"  v-model="loginForm.password" auto-complete="off" placeholder="请输入密码"></el-input>
-          </el-form-item>
-          <el-form-item label="验证码:" prop="code">
-            <el-input type="text" @keydown.enter.native="submitLogin" v-model="loginForm.code" auto-complete="off" placeholder="请输入验证码" style="width:150px;"></el-input>
-            <img :src="verifyCode" title="点击切换验证码" @click="changeverifyCode" />
-          </el-form-item>
-          <el-checkbox v-model="checked" class="loginRemember"></el-checkbox><span> 记住我一周</span>
-          <div>
+          <!--<el-form-item label="密码:" prop="password">-->
+            <!--<el-input type="password"  v-model="loginForm.password" auto-complete="off" placeholder="请输入密码"></el-input>-->
+          <!--</el-form-item>-->
+          <!--<el-form-item label="验证码:" prop="code">-->
+            <!--<el-input type="text" @keydown.enter.native="submitLogin" v-model="loginForm.code" auto-complete="off" placeholder="请输入验证码" style="width:150px;"></el-input>-->
+            <!--<img :src="verifyCode" title="点击切换验证码" @click="changeverifyCode" />-->
+          <!--</el-form-item>-->
+          <!--<el-checkbox v-model="checked" class="loginRemember"></el-checkbox><span> 记住我一周</span>-->
+          <div >
             <el-button @click="showRegistryDialog" style="width:45% ;margin-right: 15px">注册</el-button>
             <el-button type="primary" style="width:45% ;" @click="submitLogin"  v-loading.fullscreen.lock="fullscreenLoading">登录</el-button>
           </div>
@@ -33,29 +30,29 @@
         <el-form-item label="登录用户名：" :label-width="formLabelWidth" prop="username">
             <el-input v-model="registerForm.username" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="密码：" :label-width="formLabelWidth" prop="password">
-          <el-input type="password" v-model="registerForm.password" autocomplete="off"></el-input>
-        </el-form-item>
-        <el-form-item label="确认密码：" :label-width="formLabelWidth" prop="checkPass">
-          <el-input type="password" v-model="registerForm.checkPass" autocomplete="off"></el-input>
-        </el-form-item>
-        <el-form-item label="用户头像：" :label-width="formLabelWidth">
-          <el-upload
-                  action="/file"
-                  ref="upload"
-                  list-type="picture-card"
-                  :class="{disabled:uploadDisabled}"
-                  :before-upload="beforeAvatarUpload"
-                  :file-list="fileList"
-                  :on-progress="onProgress"
-                  :on-success="imgSuccess"
-                  :on-error="imgError"
-                  :on-remove="imgRemove"
-                  >
-            <i  class="el-icon-plus"></i>
-            <div slot="tip" class="el-upload__tip">只能上传不超过4MB的图片(可使用默认头像！)</div>
-          </el-upload>
-        </el-form-item>
+        <!--<el-form-item label="密码：" :label-width="formLabelWidth" prop="password">-->
+          <!--<el-input type="password" v-model="registerForm.password" autocomplete="off"></el-input>-->
+        <!--</el-form-item>-->
+        <!--<el-form-item label="确认密码：" :label-width="formLabelWidth" prop="checkPass">-->
+          <!--<el-input type="password" v-model="registerForm.checkPass" autocomplete="off"></el-input>-->
+        <!--</el-form-item>-->
+        <!--<el-form-item label="用户头像：" :label-width="formLabelWidth">-->
+          <!--<el-upload-->
+                  <!--action="/file"-->
+                  <!--ref="upload"-->
+                  <!--list-type="picture-card"-->
+                  <!--:class="{disabled:uploadDisabled}"-->
+                  <!--:before-upload="beforeAvatarUpload"-->
+                  <!--:file-list="fileList"-->
+                  <!--:on-progress="onProgress"-->
+                  <!--:on-success="imgSuccess"-->
+                  <!--:on-error="imgError"-->
+                  <!--:on-remove="imgRemove"-->
+                  <!--&gt;-->
+            <!--<i  class="el-icon-plus"></i>-->
+            <!--<div slot="tip" class="el-upload__tip">只能上传不超过4MB的图片(可使用默认头像！)</div>-->
+          <!--</el-upload>-->
+        <!--</el-form-item>-->
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button type="primary" @click="submitRegisterForm('registerForm') " style="width: 100%">注册</el-button>
@@ -86,7 +83,7 @@
       };
       var validateUsername = (rule, value, callback) => {
         if (value === '') {
-          callback(new Error('请输入用户名'));
+          callback(new Error('请输入席位名'));
         }
         //检查用户名是否重复
         this.getRequest("/user/checkUsername?username="+value).then(resp=>{
@@ -120,16 +117,16 @@
       };
       return{
         loginForm:{
-           username:'huang',
+           username:'',
            password:123,
            code:''
         },
         verifyCode:'/verifyCode',
         checked:true,
         rules: {
-          username:[{required:true,message:'请输入用户名',trigger:'blur'}],
-          password:[{required:true,message: '请输入密码',trigger:'blur'}],
-          code:[{required:true,message: '请输入验证码',trigger:'blur'}]
+          username:[{required:true,message:'请输入用户名',trigger:'blur'}]
+          // password:[{required:true,message: '请输入密码',trigger:'blur'}],
+          // code:[{required:true,message: '请输入验证码',trigger:'blur'}]
         },
         fullscreenLoading:false,
         //注册表单相关
@@ -166,7 +163,7 @@
         this.$refs.loginForm.validate((valid) => {
           if (valid) {
             this.fullscreenLoading=true;
-            this.postKeyValueRequest('/doLogin',this.loginForm).then(resp=>{
+            this.postKeyValueRequest('/doLogin',this.loginForm.username).then(resp=>{
               setTimeout(()=>{
                 this.fullscreenLoading=false;
               },1000);

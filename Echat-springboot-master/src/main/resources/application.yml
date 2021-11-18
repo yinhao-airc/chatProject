@@ -1,9 +1,9 @@
 server:
-  port: 443
+  port: 8080
 spring:
   # 配置数据库连接池
   datasource:
-    url: jdbc:mysql://localhost:3306/combat?characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://localhost:3306/echat?characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: 1234

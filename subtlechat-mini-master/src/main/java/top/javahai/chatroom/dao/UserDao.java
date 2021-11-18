@@ -1,5 +1,6 @@
 package top.javahai.chatroom.dao;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.yaml.snakeyaml.events.Event;
 import top.javahai.chatroom.entity.User;
 import org.apache.ibatis.annotations.Param;
@@ -11,6 +12,7 @@ import java.util.List;
  * @author makejava
  * @since 2020-06-16 12:06:29
  */
+@Mapper
 public interface UserDao {
 
     /**

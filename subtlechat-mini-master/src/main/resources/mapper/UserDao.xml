@@ -13,7 +13,7 @@
         <result property="isLocked" column="is_locked" jdbcType="OTHER"/>
     </resultMap>
 <!--根据用户名查询用户 -->
-    <select id="loadUserByUsername" resultMap="UserMap">
+    <select id="loadUserByUsername" resultMap="UserMap" parameterType="String">
         select * from user where username=#{username}
     </select>
 

@@ -73,13 +73,13 @@ public class MultiHttpSecurityConfig {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
       //将验证码过滤器添加在用户名密码过滤器的前面
-      http.addFilterBefore(verificationCodeFilter, UsernamePasswordAuthenticationFilter.class);
+//      http.addFilterBefore(verificationCodeFilter, UsernamePasswordAuthenticationFilter.class);
       http.antMatcher("/admin/**").authorizeRequests()
               .anyRequest().authenticated()
               .and()
               .formLogin()
               .usernameParameter("username")
-              .passwordParameter("password")
+//              .passwordParameter("password")
               .loginPage("/admin/login")
               .loginProcessingUrl("/admin/doLogin")
               //成功处理
@@ -151,13 +151,13 @@ public class MultiHttpSecurityConfig {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
       //将验证码过滤器添加在用户名密码过滤器的前面
-      http.addFilterBefore(verificationCodeFilter, UsernamePasswordAuthenticationFilter.class);
+//      http.addFilterBefore(verificationCodeFilter, UsernamePasswordAuthenticationFilter.class);
       http.authorizeRequests()
               .anyRequest().authenticated()
               .and()
               .formLogin()
               .usernameParameter("username")
-              .passwordParameter("password")
+//              .passwordParameter("password")
               .loginPage("/login")
               .loginProcessingUrl("/doLogin")
               //成功处理

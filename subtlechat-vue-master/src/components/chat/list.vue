@@ -5,19 +5,19 @@
 			<p style="padding: 2px 4px;height: 20px">群聊列表</p>
 			<li :class="{ active: currentSession?'群聊'== currentSession.username:false }"
 					v-on:click="changeCurrentSession(chatObj)">
-				<img class="avatar" src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1268761962,3976237305&fm=26&gp=0.jpg">
+				<!--<img class="avatar" src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1268761962,3976237305&fm=26&gp=0.jpg">-->
 				<el-badge :is-dot="isDot[user.username+'#群聊']"><p class="name">群聊</p></el-badge>
 			</li>
 			</ul>
-<!--机器人-->
-		<ul v-if="currentList=='机器人'">
-			<p style="padding: 2px 4px;height: 20px">快来和机器人聊天吧！</p>
-			<li :class="{ active: currentSession?'机器人'== currentSession.username:false }"
-					v-on:click="changeCurrentSession(robotObj)">
-				<img class="avatar" src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2548892998,499717296&fm=26&gp=0.jpg">
-				<p class="name">瓦力(智能回复)</p>
-			</li>
-		</ul>
+<!--&lt;!&ndash;机器人&ndash;&gt;-->
+		<!--<ul v-if="currentList=='机器人'">-->
+			<!--<p style="padding: 2px 4px;height: 20px">快来和机器人聊天吧！</p>-->
+			<!--<li :class="{ active: currentSession?'机器人'== currentSession.username:false }"-->
+					<!--v-on:click="changeCurrentSession(robotObj)">-->
+				<!--<img class="avatar" src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2548892998,499717296&fm=26&gp=0.jpg">-->
+				<!--<p class="name">瓦力(智能回复)</p>-->
+			<!--</li>-->
+		<!--</ul>-->
 <!--用户列表-->
 		<el-scrollbar      wrap-class="userList" wrap-style="height:600px;"
 											  view-style="height:100%;" :native="false">
@@ -27,21 +27,21 @@
 					v-on:click="changeCurrentSession(item)"><!--   :class="[item.id === currentSession ? 'active':'']" -->
 				<div style="display: flex;justify-content: space-between">
 					<div>
-						<el-badge :is-dot="isDot[user.username+'#'+item.username]" style="">
-							<el-image class="avatar"
-												:preview-src-list="[item.userProfile]"
-												:src="item.userProfile"
-												:alt="item.nickname">
-								<div slot="error" class="image-slot">
-									<i class="el-icon-picture-outline"></i>
-								</div>
-							</el-image>
-						</el-badge>
+						<!--<el-badge :is-dot="isDot[user.username+'#'+item.username]" style="">-->
+							<!--&lt;!&ndash;<el-image class="avatar"&ndash;&gt;-->
+												<!--&lt;!&ndash;:preview-src-list="[item.userProfile]"&ndash;&gt;-->
+												<!--&lt;!&ndash;:src="item.userProfile"&ndash;&gt;-->
+												<!--&lt;!&ndash;:alt="item.nickname">&ndash;&gt;-->
+								<!--&lt;!&ndash;<div slot="error" class="image-slot">&ndash;&gt;-->
+									<!--&lt;!&ndash;<i class="el-icon-picture-outline"></i>&ndash;&gt;-->
+								<!--&lt;!&ndash;</div>&ndash;&gt;-->
+							<!--&lt;!&ndash;</el-image>&ndash;&gt;-->
+						<!--</el-badge>-->
 						<p class="name">{{item.nickname}}</p>
 					</div>
-					<div>
-					<el-badge :value="item.userStateId==1?'在线':'离线'" :type="item.userStateId==1?'danger':'info'"></el-badge>
-					</div>
+					<!--<div>-->
+					<!--<el-badge :value="item.userStateId==1?'在线':'离线'" :type="item.userStateId==1?'danger':'info'"></el-badge>-->
+					<!--</div>-->
 				</div>
   		</li>
   	</ul>
@@ -58,11 +58,11 @@ export default {
     return {
 			user:this.$store.state.currentUser,
 			chatObj:{username:'群聊',nickname:'群聊'},//群聊实体对象（为方法复用而构造，对于User对象）
-			robotObj:{
-				username:'机器人',
-				nickname:'机器人',
-			  userProfile:'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2548892998,499717296&fm=26&gp=0.jpg'
-			}
+			// robotObj:{
+			// 	username:'机器人',
+			// 	nickname:'机器人',
+			//   userProfile:'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2548892998,499717296&fm=26&gp=0.jpg'
+			// }
     }
   },
   computed: mapState([

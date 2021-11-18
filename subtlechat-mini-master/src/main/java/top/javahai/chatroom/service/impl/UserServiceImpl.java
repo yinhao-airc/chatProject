@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private UserDao userDao;
 
     /**
-     * 根据用户名进行登录
+     * 根据用户名进行登录认证  (security)
      * @param username
      * @return
      * @throws UsernameNotFoundException
