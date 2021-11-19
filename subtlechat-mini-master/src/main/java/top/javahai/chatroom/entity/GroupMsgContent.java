@@ -39,7 +39,7 @@ public class GroupMsgContent implements Serializable {
     */
     private String content;
     /**
-    * 消息类型编号
+    * 消息类型编号 1.文本 2.图片 3.文件
     */
     private Integer messageTypeId;
 

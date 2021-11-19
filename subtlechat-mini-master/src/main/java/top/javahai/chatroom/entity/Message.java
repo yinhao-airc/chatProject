@@ -14,6 +14,7 @@ public class Message {
   private Date createTime;
   private String fromNickname;
   private String fromUserProfile;
+  //1.文本 2.图片 3.文件
   private Integer messageTypeId;
 
   public String getFrom() {
