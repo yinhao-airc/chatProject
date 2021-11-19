@@ -16,29 +16,29 @@
         <el-tooltip class="item" effect="dark" content="用户列表" placement="right">
         <el-button @click="chooseChatList('私聊')" class="toolBtn" size="small"><i class="fa fa-address-book-o fa-2x" aria-hidden="true"></i></el-button>
         </el-tooltip>
-        <el-tooltip class="item" effect="dark" content="与机器人聊天" placement="right">
-          <el-button @click="chooseChatList('机器人')" class="toolBtn" size="small"><i class="fa fa-android fa-2x" aria-hidden="true"></i></el-button>
-        </el-tooltip>
+        <!--<el-tooltip class="item" effect="dark" content="与机器人聊天" placement="right">-->
+          <!--<el-button @click="chooseChatList('机器人')" class="toolBtn" size="small"><i class="fa fa-android fa-2x" aria-hidden="true"></i></el-button>-->
+        <!--</el-tooltip>-->
       </div>
       <div class="bottomBtnBar">
-        <el-tooltip class="item" effect="dark" content="个人中心" placement="right">
-          <el-button class="toolBtn" size="small"><i class="fa fa-user fa-2x" aria-hidden="true"></i></el-button>
-        </el-tooltip>
-        <el-tooltip class="item" effect="dark" content="更多" placement="right">
-          <el-popover
-                  placement="right"
-                  width="180"
-                  trigger="click"
-                  popper-class="moreListPopoverClass"
-                   >
-            <ul id="moreList">
-              <li @click="showFeedbackDialog" >意见反馈</li>
-              <li>举报</li>
-              <li @click="clearChatHistory">清空聊天记录</li>
-            </ul>
-            <el-button slot="reference" class="toolBtn" size="small"><i class="fa fa-bars fa-2x" aria-hidden="true"></i></el-button>
-          </el-popover>
-        </el-tooltip>
+        <!--<el-tooltip class="item" effect="dark" content="个人中心" placement="right">-->
+          <!--<el-button class="toolBtn" size="small"><i class="fa fa-user fa-2x" aria-hidden="true"></i></el-button>-->
+        <!--</el-tooltip>-->
+        <!--<el-tooltip class="item" effect="dark" content="更多" placement="right">-->
+          <!--<el-popover-->
+                  <!--placement="right"-->
+                  <!--width="180"-->
+                  <!--trigger="click"-->
+                  <!--popper-class="moreListPopoverClass"-->
+                   <!--&gt;-->
+            <!--<ul id="moreList">-->
+              <!--<li @click="showFeedbackDialog" >意见反馈</li>-->
+              <!--<li>举报</li>-->
+              <!--<li @click="clearChatHistory">清空聊天记录</li>-->
+            <!--</ul>-->
+            <!--<el-button slot="reference" class="toolBtn" size="small"><i class="fa fa-bars fa-2x" aria-hidden="true"></i></el-button>-->
+          <!--</el-popover>-->
+        <!--</el-tooltip>-->
         <el-tooltip class="item" effect="dark" content="退出" placement="right">
         <el-button @click="exitSystem" class="toolBtn" size="small"><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i></el-button>
         </el-tooltip>

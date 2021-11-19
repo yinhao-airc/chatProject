@@ -36,7 +36,7 @@
       </el-table-column>
       <el-table-column
               prop="username"
-              label="用户名"
+              label="席位名"
               width="180">
       </el-table-column>
       <el-table-column

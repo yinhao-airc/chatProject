@@ -65,7 +65,7 @@ public class User  implements UserDetails {
     //账号是否不锁定
     @Override
     public boolean isAccountNonLocked() {
-        return  !isLocked;
+        return true;
     }
 
     @Override
@@ -75,7 +75,7 @@ public class User  implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return  isEnabled;
+        return  true;
     }
 
     public void setUsername(String username) {

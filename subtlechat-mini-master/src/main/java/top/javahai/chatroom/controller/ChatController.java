@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import top.javahai.chatroom.entity.ParticipantRepository;
 import top.javahai.chatroom.entity.User;
 import top.javahai.chatroom.service.UserService;
+import top.javahai.chatroom.utils.UserUtil;
 
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class ChatController {
   ParticipantRepository participantRepository;
 
   @GetMapping("/users")
-  public List<String> getUsersWithoutCurrentUser(){
-    return participantRepository.getCopyList();
+  public List<User> getUsersWithoutCurrentUser(){
+    return participantRepository.getUsersWithoutCurrentUser();
   }
 }

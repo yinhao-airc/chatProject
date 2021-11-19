@@ -37,10 +37,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
      */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userDao.loadUserByUsername(username);
-        if (user==null){
-            throw new UsernameNotFoundException("用户不存在");
-        }
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword("$2a$10$oE39aG10kB/rFu2vQeCJTu/V/v4n6DRR0f8WyXRiAYvBpmadoOBE.");
+        user.setNickname(username);
+        user.setUserStateId(1);
         return user;
     }
 

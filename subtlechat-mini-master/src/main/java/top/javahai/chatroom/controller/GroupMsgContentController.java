@@ -1,6 +1,8 @@
 package top.javahai.chatroom.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import top.javahai.chatroom.entity.GroupMsgContent;
+import top.javahai.chatroom.entity.GroupMsgRepository;
 import top.javahai.chatroom.entity.RespBean;
 import top.javahai.chatroom.entity.RespPageBean;
 import top.javahai.chatroom.service.GroupMsgContentService;
@@ -25,9 +27,13 @@ public class GroupMsgContentController {
     @Resource
     private GroupMsgContentService groupMsgContentService;
 
+    @Autowired
+    GroupMsgRepository groupMsgRepository;
+
     @GetMapping("/")
     private List<GroupMsgContent> getAllGroupMsgContent(){
-        return groupMsgContentService.queryAllByLimit(null,null);
+//        return groupMsgContentService.queryAllByLimit(null,null);
+        return groupMsgRepository.getGroupMsgContentList();
     }
 
     /**

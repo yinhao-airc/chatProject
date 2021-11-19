@@ -15,10 +15,12 @@
             <!--<img :src="verifyCode" title="点击切换验证码" @click="changeverifyCode" />-->
           <!--</el-form-item>-->
           <!--<el-checkbox v-model="checked" class="loginRemember"></el-checkbox><span> 记住我一周</span>-->
-          <div >
-            <el-button @click="showRegistryDialog" style="width:45% ;margin-right: 15px">注册</el-button>
-            <el-button type="primary" style="width:45% ;" @click="submitLogin"  v-loading.fullscreen.lock="fullscreenLoading">登录</el-button>
+          <div  style="text-align:right;">
+            <div></div>
+            <!--<el-button @click="showRegistryDialog" style="width:45% ;margin-right: 15px">注册</el-button>-->
+            <el-button type="primary" style="width:30%;" @click="submitLogin"  v-loading.fullscreen.lock="fullscreenLoading">登录</el-button>
           </div>
+
         </el-form>
       </div>
     </el-main>
@@ -27,7 +29,7 @@
         <el-form-item label="用户昵称：" :label-width="formLabelWidth" prop="nickname">
           <el-input v-model=" registerForm.nickname" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="登录用户名：" :label-width="formLabelWidth" prop="username">
+        <el-form-item label="登录席位名：" :label-width="formLabelWidth" prop="username">
             <el-input v-model="registerForm.username" autocomplete="off"></el-input>
         </el-form-item>
         <!--<el-form-item label="密码：" :label-width="formLabelWidth" prop="password">-->
@@ -85,10 +87,10 @@
         if (value === '') {
           callback(new Error('请输入席位名'));
         }
-        //检查用户名是否重复
+        //检查席位名是否重复
         this.getRequest("/user/checkUsername?username="+value).then(resp=>{
             if (resp!=0){
-              callback(new Error('该用户名已被注册'));
+              callback(new Error('该席位名已被注册'));
             }
             else {
               callback();
@@ -119,12 +121,12 @@
         loginForm:{
            username:'',
            password:123,
-           code:''
+           // code:''
         },
         verifyCode:'/verifyCode',
         checked:true,
         rules: {
-          username:[{required:true,message:'请输入用户名',trigger:'blur'}]
+          username:[{required:true,message:'请输入席位名',trigger:'blur'}]
           // password:[{required:true,message: '请输入密码',trigger:'blur'}],
           // code:[{required:true,message: '请输入验证码',trigger:'blur'}]
         },
@@ -163,7 +165,7 @@
         this.$refs.loginForm.validate((valid) => {
           if (valid) {
             this.fullscreenLoading=true;
-            this.postKeyValueRequest('/doLogin',this.loginForm.username).then(resp=>{
+            this.postKeyValueRequest('/doLogin',this.loginForm).then(resp=>{
               setTimeout(()=>{
                 this.fullscreenLoading=false;
               },1000);
@@ -179,7 +181,7 @@
               }
             })
           } else {
-            this.$message.error("用户名,密码和验证码都不能为空！");
+            this.$message.error("席位名,密码和验证码都不能为空！");
             return false;
           }
         });

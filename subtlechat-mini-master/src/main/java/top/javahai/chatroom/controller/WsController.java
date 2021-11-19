@@ -7,6 +7,7 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import top.javahai.chatroom.entity.GroupMsgContent;
+import top.javahai.chatroom.entity.GroupMsgRepository;
 import top.javahai.chatroom.entity.Message;
 import top.javahai.chatroom.entity.User;
 import top.javahai.chatroom.service.GroupMsgContentService;
@@ -24,6 +25,8 @@ import java.util.Date;
 public class WsController {
   @Autowired
   SimpMessagingTemplate simpMessagingTemplate;
+  @Autowired
+  GroupMsgRepository groupMsgRepository;
 
   /**
    * 单聊的消息的接受与转发
@@ -60,7 +63,8 @@ public class WsController {
     groupMsgContent.setFromProfile(currentUser.getUserProfile());
     groupMsgContent.setCreateTime(new Date());
     //保存该条群聊消息记录到数据库中
-    groupMsgContentService.insert(groupMsgContent);
+//    groupMsgContentService.insert(groupMsgContent);
+    groupMsgRepository.addGroupMsgContent(groupMsgContent);
     //转发该条数据
     simpMessagingTemplate.convertAndSend("/topic/greetings",groupMsgContent);
   }
