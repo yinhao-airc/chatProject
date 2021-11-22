@@ -1,13 +1,16 @@
 <template>
   <div id="toolbar">
-    <el-image class="imgProfile"
-              :src="user.userProfile"
-              :preview-src-list="[user.userProfile]"
-              :alt="user.nickname">
-      <div slot="error" class="image-slot">
-        <i class="el-icon-picture-outline"></i>
-      </div>
-    </el-image>
+    <!--<el-image class="imgProfile"-->
+              <!--:src="user.userProfile"-->
+              <!--:preview-src-list="[user.userProfile]"-->
+              <!--:alt="user.nickname">-->
+      <!--<div slot="error" class="image-slot">-->
+        <!--<i class="el-icon-picture-outline"></i>-->
+      <!--</div>-->
+    <!--</el-image>-->
+    <div  style="margin-left: 5px;">
+        <p> {{user.username}}</p>
+    </div>
     <div id="btnBar">
       <div class="topBtnBar">
         <el-tooltip  class="item" effect="dark" content="进入群聊" placement="right">
